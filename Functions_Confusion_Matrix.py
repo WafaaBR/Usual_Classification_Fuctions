@@ -9,20 +9,19 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def plot_confusion_matrix(cm, nbr_c, cmap, title='Confusion matrix'):
-    plt.figure()
     plt.imshow(cm, interpolation='nearest', cmap=cmap)
     plt.title(title)
-    plt.colorbar()
     tick_marks = np.arange(nbr_c)
     plt.xticks(tick_marks, tick_marks[:]+1)
     plt.yticks(tick_marks, tick_marks[:]+1)
     plt.tight_layout()
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
+    plt.colorbar()
     plt.show()
     
 def estimate_confusion_matrix(True_y,Predict_y):
-    # Matrice de confusion normalisée   
+    # normalized confusion matrix   
     CM = confusion_matrix(True_y,Predict_y)
     CM_N = CM.astype('float') / CM.sum(axis=1)[:, np.newaxis]*100     
     # La diagonale de la matrice de confusion
